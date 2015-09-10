@@ -52,7 +52,10 @@ void BlockSegue(void) {
     }
 
     if (!self.jmg_dictionaryBlock || !self.jmg_dictionaryBlock[segue.identifier]) {
-        NSLog(@"Segue identifier '%@' doesn't exist", segue.identifier);
+        // Call the original implementation if we don't have a prepare block configured
+        [self jmg_prepareForSegue:segue sender:sender];
+
+
         return;
     }
 
