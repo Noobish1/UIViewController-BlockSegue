@@ -40,9 +40,9 @@ void BlockSegue(void) {
     SEL swizzledSel = @selector(jmg_prepareForSegue:sender:);
 
     Method originalMethod = class_getInstanceMethod(currentClass, originalSel);
-    IMP swizzledImplementation = class_getMethodImplementation(currentClass, swizzledSel);
+    Method swizzleMethod = class_getInstanceMethod(currentClass, swizzledSel);
 
-    method_setImplementation(originalMethod, swizzledImplementation);
+    method_exchangeImplementations(originalMethod, swizzleMethod);
 }
 
 
